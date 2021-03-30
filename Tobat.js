@@ -1,0 +1,693 @@
+/*
+==THANKS TO==
+XPTN
+MHANKBARBARS
+VTHEAR
+LOLHUMAN
+ONLYDEV
+ITSMEIKY
+XTEAM
+M R . A 4 3 G
+MrG{108P}*
+ABDUR>SENSEI
+AMPIBI>INSPIRATION
+RAMLAN
+FADHIL GRAPHY
+FDL
+DILAN
+=============
+*/
+
+//YANG DIATAS JAN DIUBAH AJG NGOTAK BABI
+
+//gw mencium bau bau Nyolong case 
+
+//Modal dikit napa woi
+
+//Kasi credit gw Mr.A43G 
+
+//dan juga Subscribe Mr.A43G jgn cuma ganti nama bot
+
+//Jangan kek kontol Njir 
+
+//anak Babi Asw
+
+//PLIS JANGAN GANTI NAMA OWNER SAMA UBAH TQTO
+
+//KLO KETAWAN SAMA TEMEN GW GW GK BAKAL UP SC LAGI:)
+const {
+    WAConnection,
+    MessageType,
+    Presence,
+    MessageOptions,
+    Mimetype,
+    WALocationMessage,
+    WA_MESSAGE_STUB_TYPES,
+    ReconnectMode,
+    ProxyAgent,
+    GroupSettingChange,
+    waChatKey,
+    mentionedJid,
+    processTime,
+} = require("@adiwajshing/baileys")
+const qrcode = require("qrcode-terminal") 
+const moment = require("moment-timezone") 
+const fs = require("fs") 
+const crypto = require('crypto')
+const imageToBase64 = require('image-to-base64')
+const axios = require('axios')
+const { color, bgcolor } = require('./lib/color')
+const { animesaran } = require('./src/animesaran')
+const { animesaran2 } = require('./src/animesaran2')
+const { help } = require('./lib/help')
+const { rules } = require('./src/rules')
+const { listsurah } = require('./src/listsurah')
+const { donasi } = require('./lib/donasi')
+const { asupan } = require('./src/asupan')
+const { fetchJson } = require('./lib/fetcher')
+const { recognize } = require('./lib/ocr')
+const { vip } = require('./database/premium')
+const { exec } = require("child_process")
+const { wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
+const tiktod = require('tiktok-scraper')
+const brainly = require('brainly-scraper')
+const ffmpeg = require('fluent-ffmpeg')
+const FormData = require('form-data')
+const toMs = require('ms')
+const kagApi = require('@kagchi/kag-api')
+const imgbb = require('imgbb-uploader')
+const cd = 4.32e+7
+const { removeBackgroundFromImageFile } = require('remove.bg')
+const { ind } = require('./language')
+const apivhtear = '0' //ADA DI CHANEL TEMEN
+const ZeksApi = 'apivinz'
+const BarBarKey = '0' //BELI SENDIRI GOBLOK MODAL DOKIT AJG
+const shizukaapi = 'onlyonedeveloper'
+const TobzApi = 'BotWeA'
+const PeQkeY = '0'
+const XteamKey = 'KINGLEO07' //BELI SENDIRI GOBLOK MODAL DIKIT AJG
+const TobzKey = 'BotWeA'
+const apiKey = 'RiuApikey' //APIKEY GW JAN DISEBAR TANPA IZIN AJG
+const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
+            + 'VERSION:3.0\n'  // Jangan di ubah biar ga error
+            + 'FN:RBOT\n'  // Ganti jadi namamu
+            + 'ORG: Pengembang RBOT;\n'  // Ganti jadi namamu/Botmu
+            + 'TEL;type=CELL;type=VOICE;waid=62814622392081:+62814622392081\n'  // Ganti jadi nomormu, tapi jangan ubah polanya
+            + 'END:VCARD' // jangan di ubah
+prefix = '#'
+blocked = []   
+limitawal = '30' //terserah ganti atau engga
+cr = '*🍁YT:Mr.A43G*\n*🍁IG:dokidokinime*\n*🍁OW:RIU*'
+vr = '*🍁ANIMESARAN🍁*'
+/******** OWNER NUMBER**********/
+const ownerNumber = ["62814622392081@s.whatsapp.net"]  //ganti menjadi nomormu
+/************************************/
+
+       
+/*********** LOAD FILE ***********/
+const _leveling = JSON.parse(fs.readFileSync('./database/group/leveling.json'))
+const _level = JSON.parse(fs.readFileSync('./database/user/level.json'))
+const dataRevoke = JSON.parse(fs.readFileSync('./src/gc-revoked.json'))
+const dataCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked.json'))
+const dataBanCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked-banlist.json'))
+const _registered = JSON.parse(fs.readFileSync('./database/bot/registered.json'))
+const welkom = JSON.parse(fs.readFileSync('./database/bot/welkom.json'))
+const nsfw = JSON.parse(fs.readFileSync('./database/bot/nsfw.json'))
+const samih = JSON.parse(fs.readFileSync('./database/bot/simi.json'))
+const event = JSON.parse(fs.readFileSync('./database/bot/event.json'))
+const _limit = JSON.parse(fs.readFileSync('./database/user/limit.json'))
+const uang = JSON.parse(fs.readFileSync('./database/user/uang.json'))
+const antilink = JSON.parse(fs.readFileSync('./database/group/antilink.json'))
+const ban = JSON.parse(fs.readFileSync('./database/user/banned.json'))
+const bad = JSON.parse(fs.readFileSync('./database/group/bad.json'))
+const badword = JSON.parse(fs.readFileSync('./database/group/badword.json'))
+const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
+const antifirtex = JSON.parse(fs.readFileSync('./database/group/antifirtex.json'))
+/*********** END LOAD ***********/
+
+/********** FUNCTION ***************/
+const getLevelingXp = (sender) => {
+            let position = false
+            Object.keys(_level).forEach((i) => {
+                if (_level[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                return _level[position].xp
+            }
+        }
+
+        const getLevelingLevel = (sender) => {
+            let position = false
+            Object.keys(_level).forEach((i) => {
+                if (_level[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                return _level[position].level
+            }
+        }
+
+        const getLevelingId = (sender) => {
+            let position = false
+            Object.keys(_level).forEach((i) => {
+                if (_level[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                return _level[position].id
+            }
+        }
+
+        const addLevelingXp = (sender, amount) => {
+            let position = false
+            Object.keys(_level).forEach((i) => {
+                if (_level[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                _level[position].xp += amount
+                fs.writeFileSync('./database/user/level.json', JSON.stringify(_level))
+            }
+        }
+
+        const addLevelingLevel = (sender, amount) => {
+            let position = false
+            Object.keys(_level).forEach((i) => {
+                if (_level[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                _level[position].level += amount
+                fs.writeFileSync('./database/user/level.json', JSON.stringify(_level))
+            }
+        }
+
+        const addLevelingId = (sender) => {
+            const obj = {id: sender, xp: 1, level: 1}
+            _level.push(obj)
+            fs.writeFileSync('./database/user/level.json', JSON.stringify(_level))
+        }
+        
+        const getLimit = (sender) => {
+        	let position = false
+              Object.keys(limit).forEach ((i) => {
+              	if (limit[position].id === sender) {
+              	   position = i
+                  }
+              })
+             if (position !== false) {
+                return limit[position].limit
+            }
+        }
+             
+         const getRegisteredRandomId = () => {
+            return _registered[Math.floor(Math.random() * _registered.length)].id
+        }
+
+        const addRegisteredUser = (userid, sender, age, time, serials) => {
+            const obj = { id: userid, name: sender, age: age, time: time, serial: serials }
+            _registered.push(obj)
+            fs.writeFileSync('./database/bot/registered.json', JSON.stringify(_registered))
+        }
+
+        const createSerial = (size) => {
+            return crypto.randomBytes(size).toString('hex').slice(0, size)
+        }
+
+        const checkRegisteredUser = (sender) => {
+            let status = false
+            Object.keys(_registered).forEach((i) => {
+                if (_registered[i].id === sender) {
+                    status = true
+                }
+            })
+            return status
+        }
+        
+        const addATM = (sender) => {
+        	const obj = {id: sender, uang : 0}
+            uang.push(obj)
+            fs.writeFileSync('./database/user/uang.json', JSON.stringify(uang))
+        }
+        
+        const addKoinUser = (sender, amount) => {
+            let position = false
+            Object.keys(uang).forEach((i) => {
+                if (uang[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                uang[position].uang += amount
+                fs.writeFileSync('./database/user/uang.json', JSON.stringify(uang))
+            }
+        }
+        
+        const checkATMuser = (sender) => {
+        	let position = false
+            Object.keys(uang).forEach((i) => {
+                if (uang[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                return uang[position].uang
+            }
+        }
+        
+        const bayarLimit = (sender, amount) => {
+        	let position = false
+            Object.keys(_limit).forEach((i) => {
+                if (_limit[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                _limit[position].limit -= amount
+                fs.writeFileSync('./database/user/limit.json', JSON.stringify(_limit))
+            }
+        }
+        	
+        const confirmATM = (sender, amount) => {
+        	let position = false
+            Object.keys(uang).forEach((i) => {
+                if (uang[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                uang[position].uang -= amount
+                fs.writeFileSync('./database/user/uang.json', JSON.stringify(uang))
+            }
+        }
+        
+            const limitAdd = (sender) => {
+             let position = false
+            Object.keys(_limit).forEach((i) => {
+                if (_limit[i].id == sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                _limit[position].limit += 1
+                fs.writeFileSync('./database/user/limit.json', JSON.stringify(_limit))
+            }
+        }
+
+
+        
+function kyun(seconds){
+  function pad(s){
+    return (s < 10 ? '0' : '') + s;
+  }
+  var hours = Math.floor(seconds / (60*60));
+  var minutes = Math.floor(seconds % (60*60) / 60);
+  var seconds = Math.floor(seconds % 60);
+
+  //return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds)
+  return `${pad(hours)} Jam ${pad(minutes)} Menit ${pad(seconds)} Detik`
+}
+/********** FUNCTION ***************/
+
+const client = new WAConnection()
+client.logger.level = 'warn'
+console.log(banner.string)
+   client.on('qr', qr => {
+   qrcode.generate(qr, { small: true })
+	console.log(color('(+)','white'), color('MrA43G','red'), color('(+)','white'), color(' SQAN CODENYA','aqua'), color('SUBREK YT MR.A43G','yellow'))
+})
+
+	client.on('credentials-updated', () => {
+		fs.writeFileSync('./MrA43G.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
+		info('2', 'info!')
+	})
+	fs.existsSync('./MrA43G.json') && client.loadAuthInfo('./MrA43G.json')
+	client.on('connecting', () => {
+		start('2', color('[ ! ]Cepat Sqan','aqua'))
+	})
+	client.on('open', () => {
+		success('2', color('[ ! ]Tersambung','red'))
+	})
+	client.connect({timeoutMs: 30*1000})
+
+
+client.on('group-participants-update', async (anu) => {
+		if (!welkom.includes(anu.jid)) return
+		try {
+			const mdata = await client.groupMetadata(anu.jid)
+			console.log(anu)
+			if (anu.action == 'add') {
+				num = anu.participants[0]
+				try {
+					ppimg = await client.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
+				} catch {
+					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+				}
+				teks = `Hallo @${num.split('@')[0]}\Selamat datang di group *${mdata.subject}* yang betah ya di sini`
+				let buff = await getBuffer(ppimg)
+				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+			} else if (anu.action == 'remove') {
+				num = anu.participants[0]
+				try {
+					ppimg = await client.getProfilePicture(`${num.split('@')[0]}@c.us`)
+				} catch {
+					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+				}
+				teks = `Sayonara @${num.split('@')[0]}👋🍁`
+				let buff = await getBuffer(ppimg)
+				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+			}
+		} catch (e) {
+			console.log('Error : %s', color(e, 'red'))
+		}
+	})
+	client.on('CB:Blocklist', json => {
+		if (blocked.length > 2) return
+	    for (let i of json[1].blocklist) {
+	    	blocked.push(i.replace('c.us','s.whatsapp.net'))
+	    }
+	})
+
+	client.on('premium', json => {
+		if (prem.length > 2) return
+	    for (let i of json[1].premiumlist) {
+	    	prem.push(i.replace('c.us','s.whatsapp.net'))
+	    }
+	})
+
+	client.on('message-new', async (mek) => {
+		try {
+			if (!mek.message) return
+			if (mek.key && mek.key.remoteJid == 'status@broadcast') return
+			if (mek.key.fromMe) return
+			global.prefix
+			global.prem
+			global.blocked
+			const content = JSON.stringify(mek.message)
+			const from = mek.key.remoteJid
+			const type = Object.keys(mek.message)[0]
+			const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
+			const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
+			const timi = moment.tz('Asia/Jakarta').add(30, 'days').calendar();
+			const timu = moment.tz('Asia/Jakarta').add(20, 'days').calendar();
+            body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
+			budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
+			var pes = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''
+			const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
+			const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
+			var Link = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''
+			const messagesLink = Link.slice(0).trim().split(/ +/).shift().toLowerCase()
+			var tas = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''
+			const mesejAnti = tas.slice(0).trim().split(/ +/).shift().toLowerCase()
+			const args = body.trim().split(/ +/).slice(1)
+			const isCmd = body.startsWith(prefix)
+			const tescuk = ["0@s.whatsapp.net"]
+			const isGroup = from.endsWith('@g.us')
+			const q = args.join(' ')
+			const botNumber = client.user.jid
+			const sender = isGroup ? mek.participant : mek.key.remoteJid
+			pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
+			const groupMetadata = isGroup ? await client.groupMetadata(from) : ''
+			const groupName = isGroup ? groupMetadata.subject : ''
+			const groupId = isGroup ? groupMetadata.jid : ''
+			const groupMembers = isGroup ? groupMetadata.participants : ''
+			const groupDesc = isGroup ? groupMetadata.desc : ''
+            const groupAdmins = isGroup ? getGroupAdmins(groupMembers) : ''
+            
+            /************** SCURITY FEATURE ************/
+            const isEventon = isGroup ? event.includes(from) : false
+            const isRegistered = checkRegisteredUser(sender)
+            const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
+            const isLevelingOn = isGroup ? _leveling.includes(from) : false
+			const isGroupAdmins = groupAdmins.includes(sender) || false
+			const isWelkom = isGroup ? welkom.includes(from) : false
+			const isNsfw = isGroup ? nsfw.includes(from) : false
+			const isSimi = isGroup ? samih.includes(from) : false
+			const isRevoke = dataRevoke.includes(from)
+			const isBanned = ban.includes(sender)
+			const isCtRevoke = dataCtRevoke.data
+			const isBanCtRevoke = dataBanCtRevoke.includes(sender) ? true : false
+			const isPrem = premium.includes(sender)
+			const isAntiLink = isGroup ? antilink.includes(from) : false
+			const isBadWord = isGroup ? badword.includes(from) : false
+                    const isAntiFirtex= isGroup ? antifirtex.includes(from) : false
+			const isOwner = ownerNumber.includes(sender)
+			const isImage = type === 'imageMessage'
+			const isUrl = (url) => {
+			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
+			}
+			const reply = (teks) => {
+				client.sendMessage(from, teks, text, {quoted:mek})
+			}
+			const sendMess = (hehe, teks) => {
+				client.sendMessage(hehe, teks, text)
+			}
+			const mentions = (teks, memberr, id) => {
+				(id == null || id == undefined || id == false) ? client.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr}})
+			}
+			const sendImage = (teks) => {
+		    client.sendMessage(from, teks, image, {quoted:mek})
+		    }
+		    const costum = (pesan, tipe, target, target2) => {
+			client.sendMessage(from, pesan, tipe, {quoted: { key: { fromMe: false, participant: `${target}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target2}` }}})
+			}
+		    const sendPtt = (teks) => {
+		    client.sendMessage(from, audio, mp3, {quoted:mek})
+		    }
+	        /*****************END SCURITY FEATURE ********/
+
+			var premi = '*X[NO]*'
+			if (isPrem) {
+				premi = '*✓[YES]*'
+			} 
+			if (isOwner) {
+				premi = '*[owner]*'
+			}
+			
+			var bani = '*[NO]*'
+			if (isBanned) {
+				bani = '*[YES]*'
+			} 
+			if (isOwner) {
+				bani = '*owner_*'
+			}
+			
+			
+	        //function leveling
+            if (isGroup && isRegistered && isLevelingOn) {
+            const currentLevel = getLevelingLevel(sender)
+            const checkId = getLevelingId(sender)
+            try {
+                if (currentLevel === undefined && checkId === undefined) addLevelingId(sender)
+                const amountXp = Math.floor(Math.random() * 10) + 500
+                const requiredXp = 5000 * (Math.pow(2, currentLevel) - 1)
+                const getLevel = getLevelingLevel(sender)
+                addLevelingXp(sender, amountXp)
+                if (requiredXp <= getLevelingXp(sender)) {
+                    addLevelingLevel(sender, 1)
+                    await reply(ind.levelup(pushname, sender, getLevelingXp,  getLevel, getLevelingLevel))
+                }
+            } catch (err) {
+                console.error(err)
+            }
+        }
+          //function check limit
+          const checkLimit = (sender) => {
+          	let found = false
+                    for (let lmt of _limit) {
+                        if (lmt.id === sender) {
+                            let limitCounts = limitawal - lmt.limit
+                            if (limitCounts <= 0) return client.sendMessage(from,`Limit request anda sudah habis\n\n_Note : Limit akan direset setiap jam 21:00!_`, text,{ quoted: mek})
+                            client.sendMessage(from, ind.limitcount(limitCounts), text, { quoted : mek})
+                            found = true
+                        }
+                    }
+                    if (found === false) {
+                        let obj = { id: sender, limit: 1 }
+                        _limit.push(obj)
+                        fs.writeFileSync('./database/user/limit.json', JSON.stringify(_limit))
+                        client.sendMessage(from, ind.limitcount(limitCounts), text, { quoted : mek})
+                    }
+				}
+				
+			//funtion limited
+           const isLimit = (sender) =>{ 
+		      let position = false
+              for (let i of _limit) {
+              if (i.id === sender) {
+              	let limits = i.limit
+              if (limits >= limitawal ) {
+              	  position = true
+                    client.sendMessage(from, ind.limitend(pushname), text, {quoted: mek})
+                    return true
+              } else {
+              	_limit
+                  position = true
+                  return false
+               }
+             }
+           }
+           if (position === false) {
+           	const obj = { id: sender, limit: 1 }
+                _limit.push(obj)
+                fs.writeFileSync('./database/user/limit.json',JSON.stringify(_limit))
+           return false
+       }
+     }
+     	
+        
+      
+            //function balance
+            if (isRegistered && isGroup ) {
+            const checkATM = checkATMuser(sender)
+            try {
+                if (checkATM === undefined) addATM(sender)
+                const uangsaku = Math.floor(Math.random() * 10) + 90
+                addKoinUser(sender, uangsaku)
+            } catch (err) {
+                console.error(err)
+            }
+        }
+          
+
+           		  //kolor
+			colors = ['red','white','black','blue','yellow','green']
+			
+			//detector media
+			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
+			const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
+			const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
+			const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
+			
+			//chat message
+		if (!isGroup && !isCmd) console.log(color(time, "white"), color("[ PRIVATE ]", "aqua"), color(budy, "white"), "from", color(sender.split('@')[0], "red"))
+            if (isGroup && !isCmd) console.log(color([time], "white"), color("[  GROUP  ]", "aqua"), color(budy, "white"), "from", color(sender.split('@')[0], "red"), "in", color(groupName, "white"))
+            if (!isGroup && isCmd) console.log(color([time], "white"), color("[ COMMAND ]", "aqua"), color(budy, "white"), "from", color(sender.split('@')[0], "red"))
+            if (isGroup && isCmd) console.log(color([time], "white"), color("[ COMMAND ]", "aqua"), color(budy, "white"), "from", color(sender.split('@')[0], "red"), "in", color(groupName, "white"))
+			
+			switch(command) {
+	
+	
+	
+	
+				
+	
+				default:
+				if (budy.includes("://chat.whatsapp.com/")){
+		        if (!isGroup) return
+		        if (!isAntiLink) return
+		        if (isGroupAdmins) return reply('Admin Grup Mah Bebas:D')
+		        client.updatePresence(from, Presence.composing)
+		        if (mesejAnti.includes(",izinkak")) return reply("Iya kak jangan spam ya")
+		        var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+		        reply(`Maaf kak ${sender.split("@")[0]} Grup ini anti link, siap siap kamu di kick`)
+		        setTimeout( () => {
+			        client.groupRemove(from, [kic]).catch((e)=>{reply(`*NICO HARUS JADI ADMINâ—*`)})
+		        }, 3000)
+		        setTimeout( () => {
+			        client.updatePresence(from, Presence.composing)
+			        reply("Hedsot....")
+		        }, 2000)
+		        setTimeout( () => {
+			        client.updatePresence(from, Presence.composing)
+			        reply("Bismillah...")
+		        }, 1000)
+		        setTimeout( () => {
+			        client.updatePresence(from, Presence.composing)
+			        reply("Ready?...")
+		        }, 0)
+		  }
+		
+		if (bad.includes(messagesLink)) {
+		if (!isGroup) return
+		if (isGroupAdmins) return reply(`*${pushname}* ᴀᴅᴀʟᴀʜ ᴀᴅᴍɪɴ ɢʀᴏᴜᴘ ᴋᴀᴍᴜ ᴛɪᴅᴀᴋ ᴀᴋᴀɴ ᴅɪ ᴋɪᴄᴋ`)
+		var Kick = `${sender.split("@")[0]}@s.whatsapp.net`
+		setTimeout( () => {
+		reply(`*sᴀʏᴏɴᴀʀᴀ ʙᴇʙᴀɴ ɢʀᴜᴘ*`)
+		}, 100)
+		setTimeout( () => {
+		client.groupRemove(from, [Kick]).catch((e) => {reply(`*ERROR:* ${e}`)}) 
+		}, 10)
+		setTimeout( () => {
+		reply(`*_「 ʙᴀᴅᴡᴏʀᴅ ᴅᴇᴛᴇᴄᴛᴇᴅ 」_*\nᴍᴀᴀғ *${pushname}* ᴀɴᴅᴀ ʙᴇʀʙɪᴄᴀʀᴀ ᴋᴏᴛᴏʀ!, ᴀɴᴅᴀ ꜱᴇɢᴇʀᴀ ᴅɪᴋɪᴄᴋ ᴅᴀʀɪ ɢʀᴜᴘ *${groupMetadata.subject}*`)
+		}, 0)
+		}
+		
+			if (budy.includes(`assalamualaikum`)) {
+                  reply(`Waalaikumsalam`)
+                  }
+
+		if (budy.includes(`Assalamualaikum`)) {
+                  reply(`Waalaikumsalam`)
+                  }
+
+		if (budy.includes(`Ngentod`)) {
+                  reply(`Jaga Omongan😡`)
+                  }
+
+		if (budy.includes(`Thanks`)) {
+                  reply(`Sama Sama Kak😁`)
+                  }
+
+		if (budy.includes(`Makasih`)) {
+                  reply(`Sama Sama Kak😁`)
+                  }
+
+		if (budy.includes(`sendsticker`)) {
+                const darkbot = fs.readFileSync('./sticker/darkbot');
+                client.sendMessage(from, darkbot, MessageType.sticker, {quoted: mek})
+                  }
+
+		if (budy.includes(`Nico`)) {
+                const nico = fs.readFileSync('./sticker/nico');
+                client.sendMessage(from, nico, MessageType.sticker, {quoted: mek})
+                  }
+
+		if (budy.includes(`Riu`)) {
+                const Riu = fs.readFileSync('./sticker/Riu');
+                client.sendMessage(from, Riu, MessageType.sticker, {quoted: mek})
+                  }
+
+		if (budy.includes(`riu`)) {
+                const Riu = fs.readFileSync('./sticker/Riu');
+                client.sendMessage(from, Riu, MessageType.sticker, {quoted: mek})
+                  }
+
+		if (budy.includes(`nico`)) {
+                const nico = fs.readFileSync('./sticker/nico');
+                client.sendMessage(from, nico, MessageType.sticker, {quoted: mek})
+                  }
+
+		if (budy.includes(`bot`)) {
+                  reply(`Iya RBOT disini ketik ,help ya kak`)
+                  }
+                  
+		if (budy.includes(`Bot`)) {
+                const bot = fs.readFileSync('./assets/bot');
+                client.sendMessage(from, bot, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
+                  }
+			if (body.startsWith(`${prefix}${command}`)) {
+
+                  reply(`*${pushname}*, Command *${prefix}${command}* Tidak Ada Di Dalam *${prefix}menu Bot Nico!*`)
+		const none = fs.readFileSync('./assets/none');
+		client.sendMessage(from, none, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
+
+			  }
+			if (isGroup && !isCmd && isSimi && budy != undefined) {
+						console.log(budy)
+						muehe = await simih(budy)
+						reply(ind.cmdnf(prefix, command))
+					} else {
+						console.log(color('[RIUBOT]','aqua'), ('Command Tidak Ditemukan!!','red'), color(sender.split('@')[0]))
+					}
+					}
+		} catch (e) {
+			console.log('Error : %s', color(e, 'red'))
+		}
+	})
