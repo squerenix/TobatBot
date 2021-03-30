@@ -1,0 +1,23 @@
+{
+  "name": "tobatbot",
+  "version": "1.0.0",
+  "description": "Copyright By TobatTeam",
+  "main": "index.js",
+  "scripts": {
+    "start": "nano index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/squerenix/TobatBot.git"
+  },
+  "keywords": [
+    "api-whatsapp"
+  ],
+  "author": "Fattahillah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/squerenix/TobatBot/issues"
+  },
+  "homepage": "https://github.com/squerenix/TobatBot#readme"
+}

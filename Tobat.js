@@ -79,6 +79,8 @@ const imgbb = require('imgbb-uploader')
 const cd = 4.32e+7
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const { ind } = require('./language')
+const { to } = require("mathjs")
+const { type } = require("node:os")
 const apivhtear = '0' //ADA DI CHANEL TEMEN
 const ZeksApi = 'apivinz'
 const BarBarKey = '0' //BELI SENDIRI GOBLOK MODAL DOKIT AJG
@@ -103,7 +105,7 @@ vr = '*🍁ANIMESARAN🍁*'
 const ownerNumber = ["62814622392081@s.whatsapp.net"]  //ganti menjadi nomormu
 /************************************/
 
-       
+
 /*********** LOAD FILE ***********/
 const _leveling = JSON.parse(fs.readFileSync('./database/group/leveling.json'))
 const _level = JSON.parse(fs.readFileSync('./database/user/level.json'))
@@ -195,18 +197,18 @@ const getLevelingXp = (sender) => {
         }
         
         const getLimit = (sender) => {
-        	let position = false
-              Object.keys(limit).forEach ((i) => {
-              	if (limit[position].id === sender) {
-              	   position = i
-                  }
-              })
-             if (position !== false) {
+        let position = false
+            Object.keys(limit).forEach ((i) => {
+            if (limit[position].id === sender) {
+            position = i
+                }
+            })
+            if (position !== false) {
                 return limit[position].limit
             }
         }
-             
-         const getRegisteredRandomId = () => {
+        
+        const getRegisteredRandomId = () => {
             return _registered[Math.floor(Math.random() * _registered.length)].id
         }
 
@@ -288,7 +290,7 @@ const getLevelingXp = (sender) => {
         }
         
             const limitAdd = (sender) => {
-             let position = false
+            let position = false
             Object.keys(_limit).forEach((i) => {
                 if (_limit[i].id == sender) {
                     position = i
@@ -303,23 +305,23 @@ const getLevelingXp = (sender) => {
 
         
 function kyun(seconds){
-  function pad(s){
+function pad(s){
     return (s < 10 ? '0' : '') + s;
-  }
-  var hours = Math.floor(seconds / (60*60));
-  var minutes = Math.floor(seconds % (60*60) / 60);
-  var seconds = Math.floor(seconds % 60);
+}
+    var hours = Math.floor(seconds / (60*60));
+    var minutes = Math.floor(seconds % (60*60) / 60);
+    var seconds = Math.floor(seconds % 60);
 
   //return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds)
-  return `${pad(hours)} Jam ${pad(minutes)} Menit ${pad(seconds)} Detik`
+    return `${pad(hours)} Jam ${pad(minutes)} Menit ${pad(seconds)} Detik`
 }
 /********** FUNCTION ***************/
 
 const client = new WAConnection()
 client.logger.level = 'warn'
 console.log(banner.string)
-   client.on('qr', qr => {
-   qrcode.generate(qr, { small: true })
+client.on('qr', qr => {
+    qrcode.generate(qr, { small: true })
 	console.log(color('(+)','white'), color('MrA43G','red'), color('(+)','white'), color(' SQAN CODENYA','aqua'), color('SUBREK YT MR.A43G','yellow'))
 })
 
@@ -351,7 +353,7 @@ client.on('group-participants-update', async (anu) => {
 				}
 				teks = `Hallo @${num.split('@')[0]}\Selamat datang di group *${mdata.subject}* yang betah ya di sini`
 				let buff = await getBuffer(ppimg)
-				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+				tobat.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
 				num = anu.participants[0]
 				try {
@@ -361,7 +363,7 @@ client.on('group-participants-update', async (anu) => {
 				}
 				teks = `Sayonara @${num.split('@')[0]}👋🍁`
 				let buff = await getBuffer(ppimg)
-				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+				tobat.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			}
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
@@ -443,22 +445,22 @@ client.on('group-participants-update', async (anu) => {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
 			}
 			const reply = (teks) => {
-				client.sendMessage(from, teks, text, {quoted:mek})
+				tobat.sendMessage(from, teks, text, {quoted:mek})
 			}
 			const sendMess = (hehe, teks) => {
-				client.sendMessage(hehe, teks, text)
+				tobat.sendMessage(hehe, teks, text)
 			}
 			const mentions = (teks, memberr, id) => {
-				(id == null || id == undefined || id == false) ? client.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr}})
+				(id == null || id == undefined || id == false) ? tobat.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : tobat.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr}})
 			}
 			const sendImage = (teks) => {
-		    client.sendMessage(from, teks, image, {quoted:mek})
+		    tobat.sendMessage(from, teks, image, {quoted:mek})
 		    }
 		    const costum = (pesan, tipe, target, target2) => {
-			client.sendMessage(from, pesan, tipe, {quoted: { key: { fromMe: false, participant: `${target}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target2}` }}})
+			tobat.sendMessage(from, pesan, tipe, {quoted: { key: { fromMe: false, participant: `${target}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target2}` }}})
 			}
 		    const sendPtt = (teks) => {
-		    client.sendMessage(from, audio, mp3, {quoted:mek})
+		    tobat.sendMessage(from, audio, mp3, {quoted:mek})
 		    }
 	        /*****************END SCURITY FEATURE ********/
 
@@ -498,13 +500,13 @@ client.on('group-participants-update', async (anu) => {
             }
         }
           //function check limit
-          const checkLimit = (sender) => {
-          	let found = false
+        const checkLimit = (sender) => {
+        let found = false
                     for (let lmt of _limit) {
                         if (lmt.id === sender) {
                             let limitCounts = limitawal - lmt.limit
-                            if (limitCounts <= 0) return client.sendMessage(from,`Limit request anda sudah habis\n\n_Note : Limit akan direset setiap jam 21:00!_`, text,{ quoted: mek})
-                            client.sendMessage(from, ind.limitcount(limitCounts), text, { quoted : mek})
+                            if (limitCounts <= 0) return tobat.sendMessage(from,`Limit request anda sudah habis\n\n_Note : Limit akan direset setiap jam 21:00!_`, text,{ quoted: mek})
+                            tobat.sendMessage(from, ind.limitcount(limitCounts), text, { quoted : mek})
                             found = true
                         }
                     }
@@ -512,37 +514,37 @@ client.on('group-participants-update', async (anu) => {
                         let obj = { id: sender, limit: 1 }
                         _limit.push(obj)
                         fs.writeFileSync('./database/user/limit.json', JSON.stringify(_limit))
-                        client.sendMessage(from, ind.limitcount(limitCounts), text, { quoted : mek})
+                        tobat.sendMessage(from, ind.limitcount(limitCounts), text, { quoted : mek})
                     }
 				}
 				
 			//funtion limited
-           const isLimit = (sender) =>{ 
-		      let position = false
-              for (let i of _limit) {
-              if (i.id === sender) {
-              	let limits = i.limit
-              if (limits >= limitawal ) {
+        const isLimit = (sender) =>{ 
+		    let position = false
+            for (let i of _limit) {
+            if (i.id === sender) {
+            let limits = i.limit
+            if (limits >= limitawal ) {
               	  position = true
-                    client.sendMessage(from, ind.limitend(pushname), text, {quoted: mek})
+                    tobat.sendMessage(from, ind.limitend(pushname), text, {quoted: mek})
                     return true
-              } else {
-              	_limit
-                  position = true
-                  return false
-               }
-             }
-           }
-           if (position === false) {
-           	const obj = { id: sender, limit: 1 }
+            } else {
+            _limit
+                position = true
+                return false
+                }
+            }
+        }
+        if (position === false) {
+        const obj = { id: sender, limit: 1 }
                 _limit.push(obj)
                 fs.writeFileSync('./database/user/limit.json',JSON.stringify(_limit))
-           return false
-       }
-     }
-     	
+        return false
+        }
+    }
+    
         
-      
+    
             //function balance
             if (isRegistered && isGroup ) {
             const checkATM = checkATMuser(sender)
@@ -554,7 +556,7 @@ client.on('group-participants-update', async (anu) => {
                 console.error(err)
             }
         }
-          
+        
 
            		  //kolor
 			colors = ['red','white','black','blue','yellow','green']
@@ -602,7 +604,7 @@ client.on('group-participants-update', async (anu) => {
 			        client.updatePresence(from, Presence.composing)
 			        reply("Ready?...")
 		        }, 0)
-		  }
+		}
 		
 		if (bad.includes(messagesLink)) {
 		if (!isGroup) return
@@ -619,66 +621,66 @@ client.on('group-participants-update', async (anu) => {
 		}, 0)
 		}
 		
-			if (budy.includes(`assalamualaikum`)) {
-                  reply(`Waalaikumsalam`)
-                  }
+		if (budy.includes(`assalamualaikum`)) {
+                reply(`Waalaikumsalam`)
+                }
 
 		if (budy.includes(`Assalamualaikum`)) {
-                  reply(`Waalaikumsalam`)
-                  }
+                reply(`Waalaikumsalam`)
+                }
 
 		if (budy.includes(`Ngentod`)) {
-                  reply(`Jaga Omongan😡`)
-                  }
+                reply(`Jaga Omongan😡`)
+                }
 
 		if (budy.includes(`Thanks`)) {
-                  reply(`Sama Sama Kak😁`)
-                  }
+                reply(`Sama Sama Kak😁`)
+                }
 
 		if (budy.includes(`Makasih`)) {
-                  reply(`Sama Sama Kak😁`)
-                  }
+                reply(`Sama Sama Kak😁`)
+                }
 
 		if (budy.includes(`sendsticker`)) {
                 const darkbot = fs.readFileSync('./sticker/darkbot');
-                client.sendMessage(from, darkbot, MessageType.sticker, {quoted: mek})
-                  }
+                tobat.sendMessage(from, darkbot, MessageType.sticker, {quoted: mek})
+                }
 
 		if (budy.includes(`Nico`)) {
                 const nico = fs.readFileSync('./sticker/nico');
-                client.sendMessage(from, nico, MessageType.sticker, {quoted: mek})
-                  }
+                tobat.sendMessage(from, nico, MessageType.sticker, {quoted: mek})
+                }
 
 		if (budy.includes(`Riu`)) {
                 const Riu = fs.readFileSync('./sticker/Riu');
-                client.sendMessage(from, Riu, MessageType.sticker, {quoted: mek})
-                  }
+                tobat.sendMessage(from, Riu, MessageType.sticker, {quoted: mek})
+                }
 
 		if (budy.includes(`riu`)) {
                 const Riu = fs.readFileSync('./sticker/Riu');
-                client.sendMessage(from, Riu, MessageType.sticker, {quoted: mek})
-                  }
+                tobat.sendMessage(from, Riu, MessageType.sticker, {quoted: mek})
+                }
 
 		if (budy.includes(`nico`)) {
                 const nico = fs.readFileSync('./sticker/nico');
-                client.sendMessage(from, nico, MessageType.sticker, {quoted: mek})
-                  }
+                tobat.sendMessage(from, nico, MessageType.sticker, {quoted: mek})
+                }
 
 		if (budy.includes(`bot`)) {
-                  reply(`Iya RBOT disini ketik ,help ya kak`)
-                  }
-                  
+                reply(`Iya RBOT disini ketik ,help ya kak`)
+                }
+                
 		if (budy.includes(`Bot`)) {
                 const bot = fs.readFileSync('./assets/bot');
-                client.sendMessage(from, bot, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
-                  }
+                tobat.sendMessage(from, bot, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
+                }
 			if (body.startsWith(`${prefix}${command}`)) {
 
                   reply(`*${pushname}*, Command *${prefix}${command}* Tidak Ada Di Dalam *${prefix}menu Bot Nico!*`)
 		const none = fs.readFileSync('./assets/none');
-		client.sendMessage(from, none, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
+		tobat.sendMessage(from, none, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
 
-			  }
+			}
 			if (isGroup && !isCmd && isSimi && budy != undefined) {
 						console.log(budy)
 						muehe = await simih(budy)
@@ -690,4 +692,164 @@ client.on('group-participants-update', async (anu) => {
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
 		}
-	})
+    switch (command) {
+        case 'help': //Dilan Rangga S.
+        case 'menu': //Dilan Rangga S.
+        case 'h': //Dilan Rangga S.
+            if (isBanned) return reply(ind.baned())
+            if (isRegistered) return reply(ind.noregis())
+            await tobat.reply(from, `
+            ┏━━━━《 ${botName} 》━━━━
+            ┃
+            ┃ ❏ NAMA : ${ownerName}
+            ┃ ❏ Prefix: 「 ${prefix} 」
+            ┃ ❏ UANG : ${uangku}
+            ┃ ❏ Total: ${total}
+            ┃
+            ┣ ❏ ABOUT BOT 」
+            ┃
+            ┣ ❏ ${prefix}info
+            ┣ ❏ ${prefix}ping
+            ┣ ❏ ${prefix}donasi
+            ┣ ❏ ${prefix}owner 
+            ┃
+            ┣ ❏ ANIME MENU 」
+            ┣ 
+            ┣ ❏ DOMPET 」
+            ┃
+            ┣ ❏ ${prefix}limit
+            ┣ ❏ ${prefix}atm
+            ┣ ❏ ${prefix}transfer
+            ┣ ❏ ${prefix}buylimit
+            ┣ 
+            ┣ ❏ DOWNLOADER 」
+            ┣ 
+            ┣ ❏ GABUT 」
+            ┣ 
+            ┣ ❏ GROUP MENU 」
+            ┣ 
+            ┣ ❏ MAKER MENU 」
+            ┣ 
+            ┣ ◪ SERTI MENU 」
+            ┣ 
+            ┣ ❏ NSFW MENU 」
+            ┃
+            ┣ ❏ OTHER MENU 」
+            ┃
+            ┣ ❏ DEFACER MENU 」
+            ┃
+            ┣ ❏ OWNER MENU 」
+            ┣ 
+            ┣ ❏ PREMIUM MENU 」
+            ┃
+            ┣ ❏ RANDOM MENU 」
+            ┃
+            ┣ ❏ SIMPLE MENU 」
+            ┃
+            ┣ ❏ SOUND MENU 」
+            ┣ 
+            ┣ ❏ THANKS TO 」
+            ┃
+            ┣ ❏ 
+            ┣ ❏ 
+            ┣ ❏ 
+            ┣ ❏ 
+            ┣ ❏ 
+            ┣ ❏ 
+            ┣ ❏ 
+            ┣ ❏ *Dilan Rangga* (Comp.)
+            ┃
+            ┗━━━━《 ${botName} 》━━━━
+            `, MessageType.text(), id)
+        break
+
+    //===============[ MENU MAKER ]===============
+        case 'narutobanner'://UPDATE MR.108P
+            if (isVerified) return reply(from, ind.notVerified(), id)
+            if (isLimit(sender)) return reply(ind.limitend(pusname))
+            if (args.length < 1) return reply(`Contoh: ${prefix}narutobanner ArnandoGanz`)
+                nar = body.slice(14)
+                reply(ind.wait())
+                narba = await getBuffer(`https://videfikri.com/api/textmaker/narutobanner/?text=${nar}`)
+                blue.sendMessage(from, narba, image, {quoted: mek})
+            await limitAdd(sender)
+        break
+        case 'glowneon'://UPDATE MR.108P
+            if (isVerified) return reply(from, ind.notVerified(), id)
+            if (isLimit(sender)) return reply(ind.limitend(pusname))
+            if (args.length < 1) return reply(`Contoh: ${prefix}glowneon Mr.108P`)
+                tekas = body.slice(10)
+                reply(ind.wait())
+                glown = await getBuffer(`https://videfikri.com/api/textmaker/glowingneon/?text=${tekas}`)
+                blue.sendMessage(from, glown, image, {quoted: mek})
+            await limitAdd(sender)
+        break
+        case 'gsuggest'://UPDATE MR.108P
+            if (isVerified) return reply(from, ind.notVerified(), id)
+            if (isLimit(sender)) return reply(ind.limitend(pusname))
+            if (args.length < 1) return reply(`Contoh: ${prefix}gsuggest Mr.108P/rem/bot`)
+                du = `${body.slice(10)}`
+                ted1 = du.split("/")[0];
+                ted2 = du.split("/")[1];
+                ted3 = du.split("/")[2];
+            reply(ind.wait())
+                sugetg = await getBuffer(`https://videfikri.com/api/textmaker/gsuggest/?text1=${ted1}&text2=${ted2}&text3=${ted3}`, {method: 'get'})
+                blue.sendMessage(from, sugetg, image, {quoted: mek})
+            await limitAdd(sender)
+        break
+        case 'candlemug'://UPDATE MR.108P
+            if (isVerified) return reply(from, ind.notVerified(), id)
+            if (isLimit(sender)) return reply(ind.limitend(pusname))
+            if (args.length < 1) return reply(`Contoh: ${prefix}candlemug ArnandoGanz`)
+                ddu = body.slice(11)
+                reply(ind.wait())
+                clmug = await getBuffer(`https://videfikri.com/api/textmaker/candlemug/?text=${ddu}`)
+                blue.sendMessage(from, clmug, image, {quoted: mek})
+            await limitAdd(sender)
+        break
+        case 'lovemss'://UPDATE MR.108P
+            if (isVerified) return reply(from, ind.notVerified(), id)
+            if (isLimit(sender)) return reply(ind.limitend(pusname))
+            if (args.length < 1) return reply(`Contoh: ${prefix}lovemss ArnandoGanz`)
+                lop = body.slice(9)
+                reply(ind.wait())
+                lepms = await getBuffer(`https://videfikri.com/api/textmaker/lovemsg/?text=${lop}`)
+                blue.sendMessage(from, lepms, image, {quoted: mek})
+            await limitAdd(sender)
+        break
+        case 'mugflower'://UPDATE MR.108P
+            if (isVerified) return reply(from, ind.notVerified(), id)
+            if (isLimit(sender)) return reply(ind.limitend(pusname))
+            if (args.length < 1) return reply(`Contoh: ${prefix}mugflower ArnandoGanz`)
+                mug = body.slice(11)
+                reply(ind.wait())
+                mflowg = await getBuffer(`https://videfikri.com/api/textmaker/mugflower/?text=${mug}`)
+                blue.sendMessage(from, mflowg, image, {quoted: mek})
+            await limitAdd(sender)
+        break
+    
+    //===============[ MENU OWNER ]===============
+        case 'listonline': //Anonymous
+            if (isVerified) return reply(from, ind.notVerified(), id)
+            if (!isOwner) return reply(ind.ownerb())
+            let ido = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : from
+            let online = [...Object.keys(client.chats.get(ido).presences), client.user.jid]
+                client.sendMessage(from, 'List Online:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join`\n`, text, { quoted: mek, contextInfo: { mentionedJid: online }
+            })
+        break 
+    
+    //===============[ OTHER MENU ]============
+        case 'battelfiel2'://UPDATE MR108P
+            if (isVerified) return reply(from, ind.notVerified(), id)
+            if (isLimit(sender)) return reply(ind.limitend(pusname))
+            if (args.length < 1) return reply(`Contoh: ${prefix}battelfiel ArnandoGanz`)
+                du = `${body.slice(13)}`
+                ted1 = du.split("/")[0];
+                ted2 = du.split("/")[1];
+            reply(ind.wait())
+                batte = await getBuffer(`https://videfikri.com/api/textmaker/bf4/?text1=${ted1}&text2=${ted2}`)
+                blue.sendMessage(from, batte, image, {quoted: mek})
+            await limitAdd(sender)
+        break       
+    }
+})
