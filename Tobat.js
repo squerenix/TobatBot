@@ -762,7 +762,7 @@ tobat.on('group-participants-update', async (anu) => {
                 nar = body.slice(14)
                 reply(ind.wait())
                 narba = await getBuffer(`https://videfikri.com/api/textmaker/narutobanner/?text=${nar}`)
-                blue.sendMessage(from, narba, image, {quoted: mek})
+                tobat.sendMessage(from, narba, image, {quoted: mek})
             await limitAdd(sender)
         break
         case 'glowneon'://UPDATE MR.108P
@@ -772,7 +772,7 @@ tobat.on('group-participants-update', async (anu) => {
                 tekas = body.slice(10)
                 reply(ind.wait())
                 glown = await getBuffer(`https://videfikri.com/api/textmaker/glowingneon/?text=${tekas}`)
-                blue.sendMessage(from, glown, image, {quoted: mek})
+                tobat.sendMessage(from, glown, image, {quoted: mek})
             await limitAdd(sender)
         break
         case 'gsuggest'://UPDATE MR.108P
@@ -785,7 +785,7 @@ tobat.on('group-participants-update', async (anu) => {
                 ted3 = du.split("/")[2];
             reply(ind.wait())
                 sugetg = await getBuffer(`https://videfikri.com/api/textmaker/gsuggest/?text1=${ted1}&text2=${ted2}&text3=${ted3}`, {method: 'get'})
-                blue.sendMessage(from, sugetg, image, {quoted: mek})
+                tobat.sendMessage(from, sugetg, image, {quoted: mek})
             await limitAdd(sender)
         break
         case 'candlemug'://UPDATE MR.108P
@@ -795,7 +795,7 @@ tobat.on('group-participants-update', async (anu) => {
                 ddu = body.slice(11)
                 reply(ind.wait())
                 clmug = await getBuffer(`https://videfikri.com/api/textmaker/candlemug/?text=${ddu}`)
-                blue.sendMessage(from, clmug, image, {quoted: mek})
+                tobat.sendMessage(from, clmug, image, {quoted: mek})
             await limitAdd(sender)
         break
         case 'lovemss'://UPDATE MR.108P
@@ -805,7 +805,7 @@ tobat.on('group-participants-update', async (anu) => {
                 lop = body.slice(9)
                 reply(ind.wait())
                 lepms = await getBuffer(`https://videfikri.com/api/textmaker/lovemsg/?text=${lop}`)
-                blue.sendMessage(from, lepms, image, {quoted: mek})
+                tobat.sendMessage(from, lepms, image, {quoted: mek})
             await limitAdd(sender)
         break
         case 'mugflower'://UPDATE MR.108P
@@ -815,7 +815,7 @@ tobat.on('group-participants-update', async (anu) => {
                 mug = body.slice(11)
                 reply(ind.wait())
                 mflowg = await getBuffer(`https://videfikri.com/api/textmaker/mugflower/?text=${mug}`)
-                blue.sendMessage(from, mflowg, image, {quoted: mek})
+                tobat.sendMessage(from, mflowg, image, {quoted: mek})
             await limitAdd(sender)
         break
     
@@ -839,7 +839,7 @@ tobat.on('group-participants-update', async (anu) => {
                 ted2 = du.split("/")[1];
             reply(ind.wait())
                 batte = await getBuffer(`https://videfikri.com/api/textmaker/bf4/?text1=${ted1}&text2=${ted2}`)
-                blue.sendMessage(from, batte, image, {quoted: mek})
+                tobat.sendMessage(from, batte, image, {quoted: mek})
             await limitAdd(sender)
         break       
     }
