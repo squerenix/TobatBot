@@ -317,37 +317,37 @@ function pad(s){
 }
 /********** FUNCTION ***************/
 
-const client = new WAConnection()
-client.logger.level = 'warn'
+const tobat = new WAConnection()
+tobat.logger.level = 'warn'
 console.log(banner.string)
-client.on('qr', qr => {
+tobat.on('qr', qr => {
     qrcode.generate(qr, { small: true })
 	console.log(color('(+)','white'), color('MrA43G','red'), color('(+)','white'), color(' SQAN CODENYA','aqua'), color('SUBREK YT MR.A43G','yellow'))
 })
 
-	client.on('credentials-updated', () => {
-		fs.writeFileSync('./MrA43G.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
+	tobat.on('credentials-updated', () => {
+		fs.writeFileSync('./MrA43G.json', JSON.stringify(tobat.base64EncodedAuthInfo(), null, '\t'))
 		info('2', 'info!')
 	})
-	fs.existsSync('./MrA43G.json') && client.loadAuthInfo('./MrA43G.json')
-	client.on('connecting', () => {
+	fs.existsSync('./MrA43G.json') && tobat.loadAuthInfo('./MrA43G.json')
+	tobat.on('connecting', () => {
 		start('2', color('[ ! ]Cepat Sqan','aqua'))
 	})
-	client.on('open', () => {
+	tobat.on('open', () => {
 		success('2', color('[ ! ]Tersambung','red'))
 	})
-	client.connect({timeoutMs: 30*1000})
+	tobat.connect({timeoutMs: 30*1000})
 
 
-client.on('group-participants-update', async (anu) => {
+tobat.on('group-participants-update', async (anu) => {
 		if (!welkom.includes(anu.jid)) return
 		try {
-			const mdata = await client.groupMetadata(anu.jid)
+			const mdata = await tobat.groupMetadata(anu.jid)
 			console.log(anu)
 			if (anu.action == 'add') {
 				num = anu.participants[0]
 				try {
-					ppimg = await client.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
+					ppimg = await tobat.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
@@ -357,7 +357,7 @@ client.on('group-participants-update', async (anu) => {
 			} else if (anu.action == 'remove') {
 				num = anu.participants[0]
 				try {
-					ppimg = await client.getProfilePicture(`${num.split('@')[0]}@c.us`)
+					ppimg = await tobat.getProfilePicture(`${num.split('@')[0]}@c.us`)
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
@@ -369,21 +369,21 @@ client.on('group-participants-update', async (anu) => {
 			console.log('Error : %s', color(e, 'red'))
 		}
 	})
-	client.on('CB:Blocklist', json => {
+	tobat.on('CB:Blocklist', json => {
 		if (blocked.length > 2) return
 	    for (let i of json[1].blocklist) {
 	    	blocked.push(i.replace('c.us','s.whatsapp.net'))
 	    }
 	})
 
-	client.on('premium', json => {
+	tobat.on('premium', json => {
 		if (prem.length > 2) return
 	    for (let i of json[1].premiumlist) {
 	    	prem.push(i.replace('c.us','s.whatsapp.net'))
 	    }
 	})
 
-	client.on('message-new', async (mek) => {
+	tobat.on('message-new', async (mek) => {
 		try {
 			if (!mek.message) return
 			if (mek.key && mek.key.remoteJid == 'status@broadcast') return
@@ -412,10 +412,10 @@ client.on('group-participants-update', async (anu) => {
 			const tescuk = ["0@s.whatsapp.net"]
 			const isGroup = from.endsWith('@g.us')
 			const q = args.join(' ')
-			const botNumber = client.user.jid
+			const botNumber = tobat.user.jid
 			const sender = isGroup ? mek.participant : mek.key.remoteJid
-			pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
-			const groupMetadata = isGroup ? await client.groupMetadata(from) : ''
+			pushname = tobat.contacts[sender] != undefined ? tobat.contacts[sender].vname || tobat.contacts[sender].notify : undefined
+			const groupMetadata = isGroup ? await tobat.groupMetadata(from) : ''
 			const groupName = isGroup ? groupMetadata.subject : ''
 			const groupId = isGroup ? groupMetadata.jid : ''
 			const groupMembers = isGroup ? groupMetadata.participants : ''
@@ -585,23 +585,23 @@ client.on('group-participants-update', async (anu) => {
 		        if (!isGroup) return
 		        if (!isAntiLink) return
 		        if (isGroupAdmins) return reply('Admin Grup Mah Bebas:D')
-		        client.updatePresence(from, Presence.composing)
+		        tobat.updatePresence(from, Presence.composing)
 		        if (mesejAnti.includes(",izinkak")) return reply("Iya kak jangan spam ya")
 		        var kic = `${sender.split("@")[0]}@s.whatsapp.net`
 		        reply(`Maaf kak ${sender.split("@")[0]} Grup ini anti link, siap siap kamu di kick`)
 		        setTimeout( () => {
-			        client.groupRemove(from, [kic]).catch((e)=>{reply(`*NICO HARUS JADI ADMINâ—*`)})
+			        tobat.groupRemove(from, [kic]).catch((e)=>{reply(`*NICO HARUS JADI ADMINâ—*`)})
 		        }, 3000)
 		        setTimeout( () => {
-			        client.updatePresence(from, Presence.composing)
+			        tobat.updatePresence(from, Presence.composing)
 			        reply("Hedsot....")
 		        }, 2000)
 		        setTimeout( () => {
-			        client.updatePresence(from, Presence.composing)
+			        tobat.updatePresence(from, Presence.composing)
 			        reply("Bismillah...")
 		        }, 1000)
 		        setTimeout( () => {
-			        client.updatePresence(from, Presence.composing)
+			        tobat.updatePresence(from, Presence.composing)
 			        reply("Ready?...")
 		        }, 0)
 		}
@@ -614,7 +614,7 @@ client.on('group-participants-update', async (anu) => {
 		reply(`*sᴀʏᴏɴᴀʀᴀ ʙᴇʙᴀɴ ɢʀᴜᴘ*`)
 		}, 100)
 		setTimeout( () => {
-		client.groupRemove(from, [Kick]).catch((e) => {reply(`*ERROR:* ${e}`)}) 
+		tobat.groupRemove(from, [Kick]).catch((e) => {reply(`*ERROR:* ${e}`)}) 
 		}, 10)
 		setTimeout( () => {
 		reply(`*_「 ʙᴀᴅᴡᴏʀᴅ ᴅᴇᴛᴇᴄᴛᴇᴅ 」_*\nᴍᴀᴀғ *${pushname}* ᴀɴᴅᴀ ʙᴇʀʙɪᴄᴀʀᴀ ᴋᴏᴛᴏʀ!, ᴀɴᴅᴀ ꜱᴇɢᴇʀᴀ ᴅɪᴋɪᴄᴋ ᴅᴀʀɪ ɢʀᴜᴘ *${groupMetadata.subject}*`)
@@ -833,8 +833,8 @@ client.on('group-participants-update', async (anu) => {
             if (isVerified) return reply(from, ind.notVerified(), id)
             if (!isOwner) return reply(ind.ownerb())
             let ido = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : from
-            let online = [...Object.keys(client.chats.get(ido).presences), client.user.jid]
-                client.sendMessage(from, 'List Online:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join`\n`, text, { quoted: mek, contextInfo: { mentionedJid: online }
+            let online = [...Object.keys(tobat.chats.get(ido).presences), tobat.user.jid]
+                tobat.sendMessage(from, 'List Online:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join`\n`, text, { quoted: mek, contextInfo: { mentionedJid: online }
             })
         break 
     
